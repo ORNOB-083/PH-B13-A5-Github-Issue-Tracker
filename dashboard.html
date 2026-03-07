@@ -31,11 +31,29 @@
 
 <body class="bg-gray-100">
 
+    <!-- Navbar -->
 
-    <h1>Welcome to Dashboard</h1>
+    <nav class="navbar bg-white shadow-md px-30 py-5">
 
+        <div class="w-10 rounded-full">
+            <img alt="Tailwind CSS Navbar component" src="./assets/github-logo.png" />
+        </div>
 
-    <script src="script.js"></script>
+        <div class="flex-1">
+            <h1 class="px-2 text-xl font-bold">GitHub Issues Tracker</h1>
+        </div>
+
+        <div class="flex gap-2">
+            <div class="relative w-64">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2"></i>
+                <input type="text" placeholder="Search issues..." class="border pl-10 py-2 w-full rounded">
+            </div>
+
+            <button class="btn btn-primary">Search</button>
+        </div>
+    </nav>
+
+    <script src="./dashboard.js"></script>
 
 </body>
 
