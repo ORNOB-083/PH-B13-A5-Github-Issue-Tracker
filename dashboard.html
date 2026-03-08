@@ -45,7 +45,7 @@
         <div class="flex gap-2">
             <div class="relative w-64">
                 <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2"></i>
-                <input type="text" placeholder="Search issues..." class="border pl-10 py-2 w-full rounded">
+                <input id="searchInput" type="text" placeholder="Search issues..." class="border pl-10 py-2 w-full rounded">
             </div>
 
             <button class="btn btn-primary">Search</button>
@@ -68,25 +68,51 @@
 
     <main class="bg-[#F8FAFC] max-w-9/12 m-auto mt-5 rounded-xl">
 
-        <!-- Buttons & issues -->
+        <!-- issues -->
         <div class="flex justify-between mx-5 py-3">
-            <!-- <div class="flex justify-between mb-4"> -->
             <div class="flex items-center gap-4">
                 <div>
                     <img src="./assets/Aperture.png" alt="">
                 </div>
                 <div>
-                    <h2 id="issueCount" class="font-bold">50 Issues</h2>
-                    <p class="text-gray-500">Track and manage your project issues</p>
+                    <h2 id="issueCount" class="font-bold text-xl">50 Issues</h2>
+                    <p class="text-gray-600">Track and manage your project issues</p>
                 </div>
             </div>
 
             <div class="flex gap-3 mt-3">
                 <p class="text-green-600 font-semibold"><i class="fa-solid fa-circle"></i>Open</p>
-                <!-- <span class="text-green-600 font-semibold"><i class="fa-solid fa-circle"></i> Open</span> -->
                 <p class="text-purple-600 font-semibold"><i class="fa-solid fa-circle"></i>Closed</p>
             </div>
         </div>
+
+        <!-- Loader -->
+
+        <div id="loader" class="text-center hidden">
+            <span class="loading loading-spinner loading-lg"></span>
+        </div>
+
+
+        <!-- Issues Card -->
+
+        <div id="issuesContainer" class="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+        </div>
+
+
+
+        <!-- Issue Details Modal -->
+        <dialog id="issue_modal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <div id="modal-content"></div>
+
+                <div class="modal-action">
+                    <form method="dialog">
+                        <button class="btn btn-primary">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
 
     </main>
 
