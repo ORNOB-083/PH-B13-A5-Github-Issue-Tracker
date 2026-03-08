@@ -1,18 +1,11 @@
 console.log('Dashboard page')
 
-
-async function searchIssue() {
-
-    const text = document.getElementById("searchInput").value
-
-    showLoader()
-
-    const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${text}`)
-
-    const data = await res.json()
-
-    displayIssues(data.data)
-
-    hideLoader()
-
-}
+const toggleTab = (id) => {
+    document.querySelectorAll("#btn-all, #btn-open, #btn-closed").forEach(btn => {
+        btn.classList.remove("bg-blue-600", "text-white");
+        btn.classList.add("bg-white", "text-black/60");
+    });
+    const btn = document.getElementById(id);
+    btn.classList.remove("bg-white", "text-black/60");
+    btn.classList.add("bg-blue-600", "text-white");
+};
