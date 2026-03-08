@@ -46,14 +46,14 @@ const renderIssues = (issues) => {
 
         if (issue.status === "closed") {
             borderColor = "border-purple-500"
-            statusIcon = "Closed-Status.png"
+            statusIcon = "Closed.png"
         }
         const card = document.createElement("div");
         card.className = `bg-white rounded-lg shadow p-5 border-t-4 cursor-pointer ${borderColor}`;
         card.innerHTML = `
         <div class="flex justify-between">
-            <img src="./assets/${statusIcon}" class="w-6">
-            <span class="badge">${issue.priority}</span>
+            <img src="./assets/${statusIcon}">
+            <span>${showPriority(issue.priority)}</span>
         </div>
         <h2 class="font-semibold mt-2">${issue.title}</h2>
         <p class="text-gray-500 text-sm mt-1">${issue.description}</p>
@@ -77,12 +77,35 @@ const renderIssues = (issues) => {
 }
 
 
+//Priority Function
+
+const showPriority = (priority) => {
+
+    let color = "";
+
+    if (priority === "high") {
+        color = " text-red-500 bg-red-200";
+    }
+    else if (priority === "medium") {
+        color = "badge-warning text-yellow-600 bg-yellow-200";
+    }
+    else if (priority === "low") {
+        color = "badge-success text-[#9CA3AF] bg-[#EEEFF2]";
+    }
+    return `
+        <span class="rounded-xl px-4 py-0.5 ${color}">
+            ${priority}
+        </span>
+    `;
+}
+
+
 //Label Function
 
 const showLabels = (labels) => {
 
     const html = labels.map(label => {
-/* bg-[#FDE68A] text-[#D97706] */
+
         let color = "badge-neutral";
 
         if (label === "bug") {
