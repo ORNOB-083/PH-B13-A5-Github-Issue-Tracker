@@ -45,7 +45,8 @@
         <div class="flex gap-2">
             <div class="relative w-64">
                 <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2"></i>
-                <input id="searchInput" type="text" placeholder="Search issues..." class="border pl-10 py-2 w-full rounded">
+                <input id="searchInput" type="text" placeholder="Search issues..."
+                    class="border pl-10 py-2 w-full rounded">
             </div>
 
             <button class="btn btn-primary">Search</button>
@@ -95,21 +96,19 @@
 
         <!-- Issues Card -->
 
-        <div id="issuesContainer" class="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div id="issuesContainer" class="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-6 p-5">
 
         </div>
 
-
-
         <!-- Issue Details Modal -->
-        <dialog id="issue_modal" class="modal modal-bottom sm:modal-middle">
-            <div class="modal-box">
-                <div id="modal-content"></div>
+        <dialog id="issue_modal" class="modal">
+            <div class="bg-white p-6 rounded-xl w-[600px]">
+                <div id="modal_content"></div>
 
-                <div class="modal-action">
-                    <form method="dialog">
-                        <button class="btn btn-primary">Close</button>
-                    </form>
+                <div class="flex justify-end mt-6">
+                    <button onclick="issue_modal.close()" class="btn btn-primary">
+                        Close
+                    </button>
                 </div>
             </div>
         </dialog>

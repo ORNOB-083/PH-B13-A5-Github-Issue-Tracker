@@ -169,23 +169,79 @@ document.getElementById("searchInput").addEventListener("input", () => {
 })
 
 
-//Modal open
+//Modal
 
 const openIssue = (id) => {
     fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`)
         .then(res => res.json())
         .then(data => {
-            displayModal(data.data);
+            showModalInfo(data.data);
         })
 }
 
 
 //Modal Display
 
-const displayModal = (issue) => {
-    document.getElementById("modal_content").innerHTML = ``;
-}
+const showModalInfo = (issue) => {
 
+    let statusColor = "";
+    let priorityColor = "";
+
+    if (issue.status === "open") {
+        statusColor = "bg-green-500 text-white";
+    } else {
+        statusColor = "bg-purple-500 text-white";
+    }
+
+
+    if (issue.priority === "high") {
+        priorityColor = "bg-red-500 text-white";
+    }
+    else if (issue.priority === "medium") {
+        priorityColor = "bg-yellow-400 text-black";
+    }
+    else {
+        priorityColor = "bg-gray-400 text-white";
+    }
+
+    document.getElementById("modal_content").innerHTML = `
+    <h2 class="text-2xl font-bold text-gray-800 mb-3">
+        ${issue.title}
+    </h2>
+
+    <div class="flex items-center gap-3 text-gray-500 mb-4">
+        <span class="px-3 py-1 rounded-full text-sm font-semibold ${statusColor}">
+            ${issue.status}
+        </span>
+        <span>Opened by <b>${issue.author}</b></span>
+        <span>${new Date(issue.createdAt).toLocaleDateString()}</span>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mb-4">
+        ${showLabels(issue.labels)}
+    </div>
+
+    <p class="text-gray-600 mb-6">${issue.description}</p>
+
+    <div class="grid grid-cols-2 gap-6 bg-gray-100 p-4 rounded-lg">
+
+        <div>
+            <p class="text-gray-500 text-sm">Assignee</p>
+            <p class="font-semibold">
+                ${issue.assignee || issue.author}
+            </p>
+        </div>
+
+        <div>
+            <p class="text-gray-500 text-sm">Priority</p>
+            <span class="px-3 py-1 rounded-full text-sm font-semibold ${priorityColor}">
+                ${issue.priority.toUpperCase()}
+            </span>
+        </div>
+    </div>
+    `
+    document.getElementById("issue_modal").showModal()
+}
 
 //Button Style
 
