@@ -136,18 +136,31 @@ const showLabels = (labels) => {
 //Filter Button
 
 document.getElementById("btn-all").addEventListener("click", () => {
-    renderIssues(issueStore);
+    filterWithLoader(issueStore);
 })
 
 document.getElementById("btn-open").addEventListener("click", () => {
     const openList = issueStore.filter(i => i.status === "open")
-    renderIssues(openList);
+    filterWithLoader(openList);
 })
 
 document.getElementById("btn-closed").addEventListener("click", () => {
     const closedList = issueStore.filter(i => i.status === "closed")
-    renderIssues(closedList);
+    filterWithLoader(closedList);
 })
+
+
+//Filter Button With Delay
+
+const filterWithLoader = (list) => {
+    showLoader(true)
+
+    setTimeout(() => {
+        renderIssues(list)
+        showLoader(false)
+    }, 400)
+}
+
 
 
 //Search Button Work
